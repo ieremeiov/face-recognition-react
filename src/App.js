@@ -10,7 +10,7 @@ import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 
 // Heroku
-const baseUrl = 'https://arcane-refuge-95723.herokuapp.com'
+const URL = process.env.BACKEND_URL;
 
 const particlesConfig = {
     particles: {
@@ -88,7 +88,7 @@ class App extends Component {
         this.setState({imageUrl: this.state.input});
 
         // handle API call on backend, hide the API key
-        fetch('https://arcane-refuge-95723.herokuapp.com/imageurl', {
+        fetch(URL + '/imageurl', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ class App extends Component {
             .then((response) => {
                 // update picture counts
                 if (response) {
-                    fetch('https://arcane-refuge-95723.herokuapp.com/image', {
+                    fetch(URL + '/image', {
                         method: 'put',
                         headers: {
                             'Content-Type': 'application/json'
